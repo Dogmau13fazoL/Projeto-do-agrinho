@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <base target="_self">
+    <title>AgroSul - Soluções Agrícolas | Fazenda Rio Grande, PR</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@preline/preline@2.0.0/dist/preline.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+        body {
+            font-family: 'Poppins', sans-serif;
+            transition: all 0.3s ease;
+        }
+        .hero-gradient {
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.9) 0%, rgba(5, 150, 105, 0.9) 100%);
+        }
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        .animate-float {
+            animation: float 6s ease-in-out infinite;
+        }
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+            100% { transform: translateY(0px); }
+        }
+    </style>
+</head>
+<body class="bg-gray-50 dark:bg-gray-900 text-gray-800 dark:text-gray-200">
+    <!-- Navigation -->
+    <nav class="bg-white dark:bg-gray-800 shadow-sm fixed w-full z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <a href="#" class="flex-shrink-0 flex items-center" onclick="handleNavigation(event, 'home')">
+                        <img class="h-8 w-auto" src="https://cdn-icons-png.flaticon.com/512/3069/3069172.png" alt="AgroSul Logo">
+                        <span class="ml-2 text-xl font-bold text-emerald-600 dark:text-emerald-400">AgroSul</span>
+                    </a>
+                </div>
+                <div class="hidden md:ml-6 md:flex md:items-center md:space-x-8">
+                    <a href="#" class="px-3 py-2 text-sm font-medium hover:text-emerald-600 dark:hover:text-emerald-400 transition" onclick="handleNavigation(event, 'home')">Início</a>
+                    <a href="#" class="px-3 py-2 text-sm font-medium hover:text-emerald-600 dark:hover:text-emerald-400 transition" onclick="handleNavigation(event, 'services')">Serviços</a>
+                    <a href="#" class="px-3 py-2 text-sm font-medium hover:text-emerald-600 dark:hover:text-emerald-400 transition" onclick="handleNavigation(event, 'about')">Sobre Nós</a>
+                    <a href="#" class="px-3 py-2 text-sm font-medium hover:text-emerald-600 dark:hover:text-emerald-400 transition" onclick="handleNavigation(event, 'contact')">Contato</a>
+                    <button id="theme-toggle" type="button" class="text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg text-sm p-2.5">
+                        <i class="fas fa-moon dark:hidden"></i>
+                        <i class="fas fa-sun hidden dark:block"></i>
+                    </button>
+                </div>
+                <div class="-mr-2 flex items-center md:hidden">
+                    <button type="button" class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none" aria-controls="mobile-menu" aria-expanded="false" id="mobile-menu-button">
+                        <span class="sr-only">Abrir menu</span>
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile menu -->
+        <div class="hidden md:hidden" id="mobile-menu">
+            <div class="pt-2 pb-3 space-y-1">
+                <a href="#" class="block px-3 py-2 text-base font-medium hover:text-emerald-600 dark:hover:text-emerald-400 transition" onclick="handleNavigation(event, 'home')">Início</a>
+                <a href="#" class="block px-3 py-2 text-base font-medium hover:text-emerald-600 dark:hover:text-emerald-400 transition" onclick="handleNavigation(event, 'services')">Serviços</a>
+                <a href="#" class="block px-3 py-2 text-base font-medium hover:text-emerald-600 dark:hover:text-emerald-400 transition" onclick="handleNavigation(event, 'about')">Sobre Nós</a>
+                <a href="#" class="block px-3 py-2 text-base font-medium hover:text-emerald-600 dark:hover:text-emerald-400 transition" onclick="handleNavigation(event, 'contact')">Contato</a>
+                <button id="theme-toggle-mobile" type="button" class="block w-full text-left px-3 py-2 text-base font-medium hover:text-emerald-600 dark:hover:text-emerald-400 transition">
+                    Alternar Tema
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="pt-24 pb-12 md:pt-32 md:pb-20 hero-gradient text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="md:flex md:items-center md:justify-between">
+                <div class="md:w-1/2 mb-10 md:mb-0">
+                    <h1 class="text-4xl md:text-5xl font-bold leading-tight mb-4">Soluções Inteligentes para o Agronegócio Paranaense</h1>
+                    <p class="text-lg md:text-xl mb-8">Consultoria especializada e tecnologia aplicada para maximizar sua produção agrícola e pecuária.</p>
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <button class="bg-white text-emerald-600 hover:bg-gray-100 font-semibold py-3 px-6 rounded-lg transition" onclick="handleNavigation(event, 'contact')">
+                            Fale Conosco
+                        </button>
+                        <button class="border-2 border-white text-white hover:bg-white hover:text-emerald-600 font-semibold py-3 px-6 rounded-lg transition" onclick="handleNavigation(event, 'services')">
+                            Nossos Serviços
+                        </button>
+                    </div>
+                </div>
+                <div class="md:w-1/2 flex justify-center">
+                    <img src="https://images.unsplash.com/photo-1605000797499-95a51c5269ae?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1471&q=80" 
+                         alt="Agricultura no Paraná" 
+                         class="rounded-lg shadow-xl w-full max-w-md animate-float">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="py-12 bg-gray-100 dark:bg-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+                <div class="p-6 bg-white dark:bg-gray-700 rounded-lg shadow">
+                    <div class="text-3xl font-bold text-emerald-600 dark:text-emerald-400">+120</div>
+                    <div class="text-gray-600 dark:text-gray-300">Clientes Atendidos</div>
+                </div>
+                <div class="p-6 bg-white dark:bg-gray-700 rounded-lg shadow">
+                    <div class="text-3xl font-bold text-emerald-600 dark:text-emerald-400">15+</div>
+                    <div class="text-gray-600 dark:text-gray-300">Anos de Experiência</div>
+                </div>
+                <div class="p-6 bg-white dark:bg-gray-700 rounded-lg shadow">
+                    <div class="text-3xl font-bold text-emerald-600 dark:text-emerald-400">30%</div>
+                    <div class="text-gray-600 dark:text-gray-300">Aumento Médio de Produtividade</div>
+                </div>
+                <div class="p-6 bg-white dark:bg-gray-700 rounded-lg shadow">
+                    <div class="text-3xl font-bold text-emerald-600 dark:text-emerald-400">100%</div>
+                    <div class="text-gray-600 dark:text-gray-300">Satisfação dos Clientes</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="py-16 bg-white dark:bg-gray-900">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-gray-900 dark:text-white mb-4">Nossos Serviços Especializados</h2>
+                <p class="text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">Soluções personalizadas para atender às necessidades específicas do agronegócio paranaense.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="service-card bg-gray-50 dark:bg-gray-800 rounded-lg overflow-hidden shadow-md transition duration-300">
+                    <div class="p-6">
+                        <div class="w-12 h-12 bg-emerald-100 dark:bg-emerald-900 rounded-full flex items-center justify-center mb-4">
+                            <i class="fas fa-leaf text-emerald-600 dark:text-emerald-400 text-xl"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-2">Consultoria Agronômica</h3>
+                        <p class="text-gray-600 dark:text-gray-300">Manejo de culturas, análise de solo, recomendações de adubação e defensivos para maximizar sua produção.</p>
+                    </div>
+                </div>
+
+                <div class="service-card bg-gray-50 dark:bg-gray-800 rounded-lg overflow-hidden shadow-md transition duration-300">
+                    <div class="p-6">
+                        <div class="w-12 h-12 bg-emerald-100 dark:bg-emerald-900 rounded-full flex items-center justify-center mb-4">
+                            <i class="fas fa-calculator text-emerald-600 dark:text-emerald-400 text-xl"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-2">Gestão Rural</h3>
+                        <p class="text-gray-600 dark:text-gray-300">Planejamento financeiro, análise de viabilidade de projetos e gestão de custos para melhorar sua rentabilidade.</p>
+                    </div>
+                </div>
+
+                <div class="service-card bg-gray-50 dark:bg-gray-800 rounded-lg overflow-hidden shadow-md transition duration-300">
+                    <div class="p-6">
+                        <div class="w-12 h-12 bg-emerald-100 dark:bg-emerald-900 rounded-full flex items-center justify-center mb-4">
+                            <i class="fas fa-laptop-code text-emerald-600 dark:text-emerald-400 text-xl"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-2">Tecnologia Agrícola</h3>
+                        <p class="text-gray-600 dark:text-gray-300">Implementação de sistemas de agricultura de precisão, drones e análise de dados para tomada de decisão.</p>
+                    </div>
+                </div>
+
+                <div class="service-card bg-gray-50 dark:bg-gray-800 rounded-lg overflow-hidden shadow-md transition duration-300">
+                    <div class="p-6">
+                        <div class="w-12 h-12 bg-emerald-100 dark:bg-emerald-900 rounded-full flex items-center justify-center mb-4">
+                            <i class="fas fa-cow text-emerald-600 dark:text-emerald-400 text-xl"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-2">Consultoria Pecuária</h3>
+                        <p class="text-gray-600 dark:text-gray-300">Otimização da produção de corte e leite, manejo sanitário e nutricional para melhorar seus resultados.</p>
+                    </div>
+                </div>
+
+                <div class="service-card bg-gray-50 dark:bg-gray-800 rounded-lg overflow-hidden shadow-md transition duration-300">
+                    <div class="p-6">
+                        <div class="w-12 h-12 bg-emerald-100 dark:bg-emerald-900 rounded-full flex items-center justify-center mb-4">
+                            <i class="fas fa-seedling text-emerald-600 dark:text-emerald-400 text-xl"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-2">Cultivos Específicos</h3>
+                        <p class="text-gray-600 dark:text-gray-300">Especialistas em soja, milho, trigo e outras culturas importantes para o Paraná.</p>
+                    </div>
+                </div>
+
+                <div class="service-card bg-gray-50 dark:bg-gray-800 rounded-lg overflow-hidden shadow-md transition duration-300">
+                    <div class="p-6">
+                        <div class="w-12 h-12 bg-emerald-100 dark:bg-emerald-900 rounded-full flex items-center justify-center mb-4">
+                            <i class="fas fa-chart-line text-emerald-600 dark:text-emerald-400 text-xl"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-2">Análise de Mercado</h3>
+                        <p class="text-gray-600 dark:text-gray-300">Acompanhamento de tendências e preços para ajudar na comercialização da sua produção.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-16 bg-gray-100 dark:bg-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="md:flex md:items-center md:space-x-12">
+                <div class="md:w-1/2 mb-10 md:mb-0">
+                    
+                      
+                </div>
+                <div class="md:w-1/2">
+                    <h2 class="text-3xl font-bold text-gray-900 dark:text-white mb-6">Sobre a AgroSul</h2>
+                    <p class="text-lg text-gray-600 dark:text-gray-300 mb-4">
+                        Fundada em Fazenda Rio Grande, PR, a AgroSul Soluções Agrícolas nasceu da paixão pelo campo e da vontade de trazer inovação para o agronegócio paranaense.
+                    </p>
+                    <p class="text-lg text-gray-600 dark:text-gray-300 mb-4">
+                        Nossa equipe é formada por engenheiros agrônomos, zootecnistas e especialistas em gestão rural com ampla experiência no setor. Combinamos conhecimento técnico com tecnologia de ponta para oferecer as melhores soluções aos nossos clientes.
+                    </p>
+                    <p class="text-lg text-gray-600 dark:text-gray-300 mb-6">
+                        Acreditamos que a agricultura moderna exige não apenas conhecimento técnico, mas também gestão eficiente e uso estratégico de dados. É isso que nos diferencia.
+                    </p>
+                    <button class="bg-emerald-600 hover:bg-emerald-700 text-white font-semibold py-3 px-6 rounded-lg transition" onclick="handleNavigation(event, 'contact')">
+                        Conheça Nossa Equipe
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="py-16 bg-white dark:bg-gray-900">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-gray-900 dark:text-white mb-4">O Que Dizem Nossos Clientes</h2>
+                <p class="text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">Depoimentos de produtores rurais que confiaram em nossos serviços.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-gray-50 dark:bg-gray-800 p-6 rounded-lg shadow">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 rounded-full bg-emerald-100 dark:bg-emerald-900 flex items-center justify-center mr-4">
+                            <i class="fas fa-user text-emerald-600 dark:text-emerald-400"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold text-gray-900 dark:text-white">João da Silva</h4>
+                            <p class="text-sm text-gray-500 dark:text-gray-400">Produtor de Soja - Castro, PR</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 dark:text-gray-300 italic">
+                        "A consultoria da AgroSul transformou minha propriedade. Em um ano, aumentei minha produtividade em 28% e reduzi custos com defensivos."
+                    </p>
+                </div>
+
+                <div class="bg-gray-50 dark:bg-gray-800 p-6 rounded-lg shadow">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 rounded-full bg-emerald-100 dark:bg-emerald-900 flex items-center justify-center mr-4">
+                            <i class="fas fa-user text-emerald-600 dark:text-emerald-400"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold text-gray-900 dark:text-white">Maria Oliveira</h4>
+                            <p class="text-sm text-gray-500 dark:text-gray-400">Pecuária de Leite - Ponta Grossa, PR</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 dark:text-gray-300 italic">
+                        "A gestão financeira que implementamos com a AgroSul nos permitiu expandir o negócio com segurança. Recomendo a todos os produtores!"
+                    </p>
+                </div>
+
+                <div class="bg-gray-50 dark:bg-gray-800 p-6 rounded-lg shadow">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 rounded-full bg-emerald-100 dark:bg-emerald-900 flex items-center justify-center mr-4">
+                            <i class="fas fa-user text-emerald-600 dark:text-emerald-400"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold text-gray-900 dark:text-white">Carlos Mendes</h4>
+                            <p class="text-sm text-gray-500 dark:text-gray-400">Produtor Integrado - Carambeí, PR</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 dark:text-gray-300 italic">
+                        "A tecnologia de agricultura de precisão que implementamos mudou completamente nossa forma de trabalhar. Maior precisão, menos desperdício."
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-16 hero-gradient text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 class="text-3xl font-bold mb-6">Pronto para Transformar Seu Negócio Rural?</h2>
+            <p class="text-xl mb-8 max-w-3xl mx-auto">Entre em contato conosco e descubra como podemos ajudar sua propriedade a alcançar melhores resultados.</p>
+            <button class="bg-white text-emerald-600 hover:bg-gray-100 font-semibold py-3 px-8 rounded-lg text-lg transition" onclick="handleNavigation(event, 'contact')">
+                Solicitar Consultoria
+            </button>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-16 bg-white dark:bg-gray-900">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="md:flex md:space-x-12">
+                <div class="md:w-1/2 mb-10 md:mb-0">
+                    <h2 class="text-3xl font-bold text-gray-900 dark:text-white mb-6">Entre em Contato</h2>
+                    <p class="text-lg text-gray-600 dark:text-gray-300 mb-6">
+                        Estamos localizados em Fazenda Rio Grande, PR, mas atendemos produtores em todo o Paraná. Preencha o formulário ou utilize nossos canais de contato.
+                    </p>
+                    
+                    <div class="space-y-4">
+                        <div class="flex items-start">
+                            <div class="flex-shrink-0 mt-1">
+                                <i class="fas fa-map-marker-alt text-emerald-600 dark:text-emerald-400 text-xl"></i>
+                            </div>
+                            <div class="ml-4">
+                                <h3 class="text-lg font-semibold text-gray-900 dark:text-white">Endereço</h3>
+                                <p class="text-gray-600 dark:text-gray-300">Rua das Colheitas, 123 - Fazenda Rio Grande, PR</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <div class="flex-shrink-0 mt-1">
+                                <i class="fas fa-phone-alt text-emerald-600 dark:text-emerald-400 text-xl"></i>
+                            </div>
+                            <div class="ml-4">
+                                <h3 class="text-lg font-semibold text-gray-900 dark:text-white">Telefone</h3>
+                                <p class="text-gray-600 dark:text-gray-300">(41) 99999-9999</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <div class="flex-shrink-0 mt-1">
+                                <i class="fas fa-envelope text-emerald-600 dark:text-emerald-400 text-xl"></i>
+                            </div>
+                            <div class="ml-4">
+                                <h3 class="text-lg font-semibold text-gray-900 dark:text-white">Email</h3>
+                                <p class="text-gray-600 dark:text-gray-300">contato@agrosul.com.br</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <div class="flex-shrink-0 mt-1">
+                                <i class="fas fa-clock text-emerald-600 dark:text-emerald-400 text-xl"></i>
+                            </div>
+                            <div class="ml-4">
+                                <h3 class="text-lg font-semibold text-gray-900 dark:text-white">Horário de Atendimento</h3>
+                                <p class="text-gray-600 dark:text-gray-300">Segunda a Sexta: 8h às 18h<br>Sábado: 8h às 12h</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="md:w-1/2">
+                    <form id="contactForm" class="space-y-6">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <label for="name" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Nome Completo</label>
+                                <input type="text" id="name" name="name" required class="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 dark:bg-gray-800 dark:text-white transition">
+                            </div>
+                            <div>
+                                <label for="email" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Email</label>
+                                <input type="email" id="email" name="email" required class="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 dark:bg-gray-800 dark:text-white transition">
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <label for="phone" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Telefone</label>
+                            <input type="tel" id="phone" name="phone" class="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 dark:bg-gray-800 dark:text-white transition">
+                        </div>
+                        
+                        <div>
+                            <label for="subject" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Assunto</label>
+                            <select id="subject" name="subject" required class="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 dark:bg-gray-800 dark:text-white transition">
+                                <option value="" disabled selected>Selecione um assunto</option>
+                                <option value="consultoria">Consultoria Agronômica</option>
+                                <option value="gestao">Gestão Rural</option>
+                                <option value="tecnologia">Tecnologia Agrícola</option>
+                                <option value="pecuaria">Pecuária</option>
+                                <option value="outro">Outro</option>
+                            </select>
+                        </div>
+                        
+                        <div>
+                            <label for="message" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Mensagem</label>
+                            <textarea id="message" name="message" rows="4" required class="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 dark:bg-gray-800 dark:text-white transition"></textarea>
+                        </div>
+                        
+                        <button type="submit" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-semibold py-3 px-6 rounded-lg transition">
+                            Enviar Mensagem
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 dark:bg-gray-900 text-gray-300 py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="text-lg font-semibold text-white mb-4">AgroSul</h3>
+                    <p class="mb-4">Soluções inteligentes para o agronegócio paranaense, com sede em Fazenda Rio Grande, PR.</p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-white transition">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-semibold text-white mb-4">Serviços</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="hover:text-white transition" onclick="handleNavigation(event, 'services')">Consultoria Agronômica</a></li>
+                        <li><a href="#" class="hover:text-white transition" onclick="handleNavigation(event, 'services')">Gestão Rural</a></li>
+                        <li><a href="#" class="hover:text-white transition" onclick="handleNavigation(event, 'services')">Tecnologia Agrícola</a></li>
+                        <li><a href="#" class="hover:text-white transition" onclick="handleNavigation(event, 'services')">Consultoria Pecuária</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-semibold text-white mb-4">Links Úteis</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="hover:text-white transition" onclick="handleNavigation(event, 'home')">Início</a></li>
+                        <li><a href="#" class="hover:text-white transition" onclick="handleNavigation(event, 'about')">Sobre Nós</a></li>
+                        <li><a href="#" class="hover:text-white transition" onclick="handleNavigation(event, 'services')">Serviços</a></li>
+                        <li><a href="#" class="hover:text-white transition" onclick="handleNavigation(event, 'contact')">Contato</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-semibold text-white mb-4">Newsletter</h3>
+                    <p class="mb-4">Assine nossa newsletter para receber dicas e novidades sobre o agronegócio.</p>
+                    <form class="flex">
+                        <input type="email" placeholder="Seu email" class="px-4 py-2 rounded-l-lg focus:outline-none text-gray-800 w-full">
+                        <button type="submit" class="bg-emerald-600 hover:bg-emerald-700 text-white px-4 py-2 rounded-r-lg transition">
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-700 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center">
+                <p>&copy; 2023 AgroSul Soluções Agrícolas. Todos os direitos reservados.</p>
+                <div class="mt-4 md:mt-0">
+                    <a href="#" class="text-gray-400 hover:text-white transition mr-4">Política de Privacidade</a>
+                    <a href="#" class="text-gray-400 hover:text-white transition">Termos de Serviço</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Handle navigation
+        function handleNavigation(event, sectionId) {
+            event.preventDefault();
+            document.getElementById(sectionId).scrollIntoView({
+                behavior: 'smooth'
+            });
+            
+            // Close mobile menu if open
+            const mobileMenu = document.getElementById('mobile-menu');
+            if (mobileMenu.classList.contains('hidden') === false) {
+                mobileMenu.classList.add('hidden');
+            }
+        }
+
+        // Mobile menu toggle
+        document.getElementById('mobile-menu-button').addEventListener('click', function() {
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Theme toggle
+        const themeToggle = document.getElementById('theme-toggle');
+        const themeToggleMobile = document.getElementById('theme-toggle-mobile');
+        
+        if (themeToggle) {
+            themeToggle.addEventListener('click', toggleTheme);
+        }
+        
+        if (themeToggleMobile) {
+            themeToggleMobile.addEventListener('click', toggleTheme);
+        }
+        
+        function toggleTheme() {
+            if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                document.documentElement.classList.remove('dark');
+                localStorage.setItem('color-theme', 'light');
+            } else {
+                document.documentElement.classList.add('dark');
+                localStorage.setItem('color-theme', 'dark');
+            }
+        }
+
+        // Check for saved theme preference or use system preference
+        if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+        } else {
+            document.documentElement.classList.remove('dark');
+        }
+
+        // Form submission
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get form values
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const phone = document.getElementById('phone').value;
+            const subject = document.getElementById('subject').value;
+            const message = document.getElementById('message').value;
+            
+            // Here you would typically send the data to a server
+            // For this example, we'll just show an alert
+            alert(`Obrigado, ${name}! Sua mensagem sobre "${subject}" foi enviada com sucesso. Entraremos em contato em breve.`);
+            
+            // Reset form
+            this.reset();
+        });
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
